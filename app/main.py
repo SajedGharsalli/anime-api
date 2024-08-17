@@ -8,6 +8,8 @@ app.include_router(animeRouter)
 app.include_router(mangaRouter)
 app.include_router(charRouter)
 
+
+
 @app.get('/')
 def index():
     return {"status":"anime api running"}

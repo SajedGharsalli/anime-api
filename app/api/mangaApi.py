@@ -10,9 +10,11 @@ def get_top(page:int):
     data = res["data"]
     manga_list = []
     for manga in data :
+        title = manga.get('title_english')
+        if not title:
+            continue
         manga_list.append({
-            "title":manga['title'],
-            "title_english":manga["title_english"],
+            "title":manga['title_english'],
             "authors" : [author["name"] for author in manga["authors"]],
             "image": manga["images"]["jpg"]["image_url"],
             "synopsis":manga["synopsis"],
@@ -24,7 +26,7 @@ def get_top(page:int):
         })
     return manga_list
 
-@mangaRouter.get("/search_by_name/{name}")
+@mangaRouter.get("/search/{name}")
 def get_by_name(name:str ):
     query = urllib.parse.quote(name.strip())
     endpoint = f"manga?q={query}&sfw"
@@ -44,3 +46,4 @@ def get_by_name(name:str ):
             "genres" : [genre["name"] for genre in manga["genres"]]
         })
     return manga_list
+
