@@ -11,6 +11,9 @@ def get_top(page: int):
     data = res["data"]
     anime_list = []
     for anime in data :
+        title = anime.get('title_english')
+        if not title:
+            continue
         anime_list.append({
             "title":anime['title_english'],
             "studios" : [studio["name"] for studio in anime["studios"]],
@@ -54,6 +57,9 @@ def get_recommendations():
     data=res["data"]
     anime_list = []
     for anime in data :
+        title = anime.get('title_english')
+        if not title:
+            continue
         anime_list.append({
             "title":anime['title_english'],
             "studios" : [studio["name"] for studio in anime["studios"]],
@@ -76,6 +82,9 @@ def get_upcoming():
     data=res["data"]
     anime_list = []
     for anime in data :
+        title = anime.get('title_english')
+        if not title:
+            continue
         anime_list.append({
             "title":anime['title_english'],
             "studios" : [studio["name"] for studio in anime["studios"]],
